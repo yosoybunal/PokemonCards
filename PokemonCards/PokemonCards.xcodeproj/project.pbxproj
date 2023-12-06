@@ -62,6 +62,7 @@
 				FC0B878E2B20770700657FE3 /* Views */,
 				FC0B878D2B2076EE00657FE3 /* Extensions */,
 				FC0B877F2B2073E900657FE3 /* Main.storyboard */,
+				FC0B87872B2073E900657FE3 /* Info.plist */,
 			);
 			path = PokemonCards;
 			sourceTree = "<group>";
@@ -112,7 +113,6 @@
 		FC0B87932B20772F00657FE3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FC0B87872B2073E900657FE3 /* Info.plist */,
 				FC0B87792B2073E900657FE3 /* AppDelegate.swift */,
 				FC0B87842B2073E900657FE3 /* LaunchScreen.storyboard */,
 				FC0B87822B2073E900657FE3 /* Assets.xcassets */,
