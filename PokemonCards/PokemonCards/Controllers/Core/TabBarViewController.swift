@@ -12,14 +12,14 @@ class TabBarViewController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    let vc1 = ViewController()
+    let vc1 = SeachViewController()
     let vc2 = FavoriteViewController()
 
     vc1.title = "Search"
     vc2.title = "Favorites"
 
-    vc1.navigationItem.largeTitleDisplayMode = .always
-    vc2.navigationItem.largeTitleDisplayMode = .always
+//    vc1.navigationItem.largeTitleDisplayMode = .always
+//    vc2.navigationItem.largeTitleDisplayMode = .always
 
     let nav1 = UINavigationController(rootViewController: vc1)
     let nav2 = UINavigationController(rootViewController: vc2)
