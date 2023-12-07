@@ -18,9 +18,6 @@ class TabBarViewController: UITabBarController {
     vc1.title = "Search"
     vc2.title = "Favorites"
 
-//    vc1.navigationItem.largeTitleDisplayMode = .always
-//    vc2.navigationItem.largeTitleDisplayMode = .always
-
     let nav1 = UINavigationController(rootViewController: vc1)
     let nav2 = UINavigationController(rootViewController: vc2)
 
