@@ -7,30 +7,37 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController {
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    view.backgroundColor = .systemMint
-  }
-
-}
-
 class SeachViewController: UIViewController, UISearchResultsUpdating {
+  
+  var searchController: UISearchController!
 
-  let searchController = UISearchController(searchResultsController: SearchResultsViewController())
+// MARK: - VC Lifecycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .systemGreen
+    view.backgroundColor = .systemBackground
+    initiliazeSearchResultsStoryboard()
     searchController.searchResultsUpdater = self
     navigationItem.searchController = searchController
+    
   }
 
+// MARK: - Update Search Results
+
   func updateSearchResults(for searchController: UISearchController) {
-    guard let text = searchController.searchBar.text else { return }
-    
+    guard let query = searchController.searchBar.text else { return }
+
 //    let vc = searchController.searchResultsController as? SearchResultsViewController
+  }
+
+// MARK: - Initiliaze Storyboard
+
+  private func initiliazeSearchResultsStoryboard() {
+    let searchResultsStoryboard = UIStoryboard(name: "SearchResults", bundle: nil)
+    guard let onboardingViewController = searchResultsStoryboard.instantiateInitialViewController() as? SearchResultsViewController else {
+      fatalError("Unable to Instantiate Onboarding View Controller")
+    }
+    searchController = UISearchController(searchResultsController: onboardingViewController)
   }
 }
 
