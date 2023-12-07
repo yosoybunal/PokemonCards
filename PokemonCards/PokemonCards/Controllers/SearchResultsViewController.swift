@@ -12,35 +12,31 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, C
   @IBOutlet var collectionView: UICollectionView!
   private var viewModels = [SearchResultCellViewModel]()
 
-// MARK: - VC Lifecycle
+  // MARK: - VC Lifecycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    APICaller.shared.search() { [weak self] result in
-      DispatchQueue.main.async {
-        switch result {
-        case .success(let model):
-          self?.viewModels = model.cards.compactMap({
-            SearchResultCellViewModel(name: $0.name , imageUrl: $0.imageUrl )
-          })
-          self?.collectionView.reloadData()
-        case .failure(let error):
-          print(error.localizedDescription)
-        }
-      }
-    }
+    collectionView.reloadData()
   }
 
-//  private func registerCells() {
-//    collectionView.register(UINib(nibName: SearchResultsCollectionViewCell.identifier, bundle: nil),
-//                                     forCellWithReuseIdentifier: SearchResultsCollectionViewCell.identifier)
-//  }
+  //  private func registerCells() {
+  //    collectionView.register(UINib(nibName: SearchResultsCollectionViewCell.identifier, bundle: nil),
+  //                                     forCellWithReuseIdentifier: SearchResultsCollectionViewCell.identifier)
+  //  }
 
-// MARK: - Delegate
+  // MARK: - Delegate
 
   func itemTapped(cell: SearchResultsCollectionViewCell) {
 
+  }
+
+  func update(with results: [Card]) {
+    viewModels = results.compactMap({
+                  SearchResultCellViewModel(name: $0.name , imageUrl: $0.imageUrl )
+                })
+    collectionView.reloadData()
+    collectionView.isHidden = results.isEmpty
   }
 }
 
