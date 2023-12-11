@@ -1,5 +1,5 @@
 //
-//  SeachViewController.swift
+//  SearchViewController.swift
 //  PokemonCards
 //
 //  Created by Berkay Unal on 6.12.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SeachViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
+class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
 
   var searchController: UISearchController!
 
@@ -19,7 +19,7 @@ class SeachViewController: UIViewController, UISearchResultsUpdating, UISearchCo
     initiliazeSearchResultsStoryboard()
     searchController.searchResultsUpdater = self
     navigationItem.searchController = searchController
-    searchController.searchBar.placeholder = "Enter a hp up to 3 digits."
+    searchController.searchBar.placeholder = "Enter a HP up to 3 digits."
   }
 
   // MARK: - Update Search Results
@@ -29,15 +29,15 @@ class SeachViewController: UIViewController, UISearchResultsUpdating, UISearchCo
           let query = searchController.searchBar.text,
           !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
 
-
     APICaller.shared.searchWithHP(with: query) { [weak self] result in
       DispatchQueue.main.async {
         switch result {
         case .success(let results):
           resultsController.update(with: results)
+          resultsController.itemTapped(with: results)
         case .failure(let error):
           let alert = UIAlertController(title: "Wrong Format!", message: "Please enter a hp value up to 3 digits.", preferredStyle: .alert)
-          alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in 
+          alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
             searchController.searchBar.text = ""
           }))
           self?.present(alert, animated: true)
@@ -54,10 +54,19 @@ class SeachViewController: UIViewController, UISearchResultsUpdating, UISearchCo
   private func initiliazeSearchResultsStoryboard() {
 
     let searchResultsStoryboard = UIStoryboard(name: "SearchResults", bundle: nil)
-    guard let onboardingViewController = searchResultsStoryboard.instantiateInitialViewController() as? SearchResultsViewController else {
+    guard let searchResultsVC = searchResultsStoryboard.instantiateInitialViewController() as? SearchResultsViewController else {
       fatalError("Unable to Instantiate Onboarding View Controller")
     }
-    searchController = UISearchController(searchResultsController: onboardingViewController)
+    searchResultsVC.delegate = self
+    self.searchController = UISearchController(searchResultsController: searchResultsVC)
   }
 }
 
+extension SearchViewController: ResultDelegate {
+
+  func didTapCell(item: CardDetailsCellViewModel) {
+
+    let vc = CardDetailsViewController(card: item)
+    navigationController?.pushViewController(vc, animated: true)
+  }
+}
