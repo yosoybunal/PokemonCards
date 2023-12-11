@@ -11,6 +11,8 @@
 		FC0B877E2B2073E900657FE3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B877D2B2073E900657FE3 /* SearchViewController.swift */; };
 		FC0B87832B2073E900657FE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC0B87822B2073E900657FE3 /* Assets.xcassets */; };
 		FC0B87862B2073E900657FE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC0B87842B2073E900657FE3 /* LaunchScreen.storyboard */; };
+		FC0C31662B2764D7002D9A86 /* Favorite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC0C31652B2764D7002D9A86 /* Favorite.storyboard */; };
+		FC0C316A2B276A44002D9A86 /* UserDefaults+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C31692B276A44002D9A86 /* UserDefaults+Additions.swift */; };
 		FC5D87582B20BAC8000A0E89 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5D87572B20BAC8000A0E89 /* TabBarViewController.swift */; };
 		FC5D875A2B20BB14000A0E89 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5D87592B20BB14000A0E89 /* FavoriteViewController.swift */; };
 		FC5D875D2B20F89A000A0E89 /* SearchResults.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC5D875C2B20F89A000A0E89 /* SearchResults.storyboard */; };
@@ -33,6 +35,8 @@
 		FC0B87822B2073E900657FE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC0B87852B2073E900657FE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC0B87872B2073E900657FE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC0C31652B2764D7002D9A86 /* Favorite.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorite.storyboard; sourceTree = "<group>"; };
+		FC0C31692B276A44002D9A86 /* UserDefaults+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Additions.swift"; sourceTree = "<group>"; };
 		FC5D87572B20BAC8000A0E89 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		FC5D87592B20BB14000A0E89 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		FC5D875C2B20F89A000A0E89 /* SearchResults.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchResults.storyboard; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 		FC0B878D2B2076EE00657FE3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FC0C31692B276A44002D9A86 /* UserDefaults+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -110,10 +115,10 @@
 		FC0B878F2B20770E00657FE3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FC0C31642B2764B5002D9A86 /* Favorites */,
 				FC5D875B2B20BB2C000A0E89 /* Core */,
 				FC0B877D2B2073E900657FE3 /* SearchViewController.swift */,
 				FC5D875E2B20FA29000A0E89 /* SearchResultsViewController.swift */,
-				FC5D87592B20BB14000A0E89 /* FavoriteViewController.swift */,
 				FC5D87712B2306AC000A0E89 /* CardDetailsViewController.swift */,
 			);
 			path = Controllers;
@@ -152,6 +157,15 @@
 				FC0B87822B2073E900657FE3 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		FC0C31642B2764B5002D9A86 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				FC5D87592B20BB14000A0E89 /* FavoriteViewController.swift */,
+				FC0C31652B2764D7002D9A86 /* Favorite.storyboard */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 		FC5D875B2B20BB2C000A0E89 /* Core */ = {
@@ -230,6 +244,7 @@
 				FC0B87862B2073E900657FE3 /* LaunchScreen.storyboard in Resources */,
 				FC0B87832B2073E900657FE3 /* Assets.xcassets in Resources */,
 				FC5D87612B20FC51000A0E89 /* SeachResultsViewControllerCell.xib in Resources */,
+				FC0C31662B2764D7002D9A86 /* Favorite.storyboard in Resources */,
 				FC5D875D2B20F89A000A0E89 /* SearchResults.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +260,7 @@
 				FC5D87722B2306AC000A0E89 /* CardDetailsViewController.swift in Sources */,
 				FC5D87632B2103FC000A0E89 /* SearchResultsCollectionViewCell.swift in Sources */,
 				FC5D87692B21D3F6000A0E89 /* SearchResultCellViewModel.swift in Sources */,
+				FC0C316A2B276A44002D9A86 /* UserDefaults+Additions.swift in Sources */,
 				FC5D87582B20BAC8000A0E89 /* TabBarViewController.swift in Sources */,
 				FC5D87652B21C750000A0E89 /* APICaller.swift in Sources */,
 				FC5D87672B21CDF8000A0E89 /* SearchResultsModel.swift in Sources */,

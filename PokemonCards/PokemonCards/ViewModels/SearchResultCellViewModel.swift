@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchResultCellViewModel {
+struct SearchResultCellViewModel: Codable {
 
   let name: String
   let imageUrl: String
