@@ -14,6 +14,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchC
   // MARK: - VC Lifecycle
 
   override func viewDidLoad() {
+    
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     initiliazeSearchResultsStoryboard()
@@ -65,7 +66,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchC
 extension SearchViewController: ResultDelegate {
 
   func didTapCell(item: CardDetailsCellViewModel) {
-
+    
     let vc = CardDetailsViewController(card: item)
     navigationController?.pushViewController(vc, animated: true)
   }
