@@ -12,7 +12,7 @@ class TabBarViewController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    let vc1 = SeachViewController()
+    let vc1 = SearchViewController()
     let vc2 = FavoriteViewController()
 
     vc1.title = "Search"
