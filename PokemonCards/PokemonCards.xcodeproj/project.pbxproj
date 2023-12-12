@@ -89,7 +89,6 @@
 				FC0B87912B20771D00657FE3 /* ViewModels */,
 				FC0B87902B20771500657FE3 /* Models */,
 				FC0B878F2B20770E00657FE3 /* Controllers */,
-				FC0B878E2B20770700657FE3 /* Views */,
 				FC0B878D2B2076EE00657FE3 /* Extensions */,
 				FC0B87872B2073E900657FE3 /* Info.plist */,
 			);
@@ -117,10 +116,9 @@
 		FC0B878F2B20770E00657FE3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FC9C2EA92B28EED500247386 /* Search */,
 				FC0C31642B2764B5002D9A86 /* Favorites */,
 				FC5D875B2B20BB2C000A0E89 /* Core */,
-				FC0B877D2B2073E900657FE3 /* SearchViewController.swift */,
-				FC5D875E2B20FA29000A0E89 /* SearchResultsViewController.swift */,
 				FC5D87712B2306AC000A0E89 /* CardDetailsViewController.swift */,
 			);
 			path = Controllers;
@@ -164,9 +162,8 @@
 		FC0C31642B2764B5002D9A86 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				FC9C2EAA2B28EF0E00247386 /* Views */,
 				FC5D87592B20BB14000A0E89 /* FavoriteViewController.swift */,
-				FC0C31652B2764D7002D9A86 /* Favorite.storyboard */,
-				FC0C316B2B2868F1002D9A86 /* FavoritesCollectionViewCell.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -177,6 +174,25 @@
 				FC5D87572B20BAC8000A0E89 /* TabBarViewController.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		FC9C2EA92B28EED500247386 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				FC0B877D2B2073E900657FE3 /* SearchViewController.swift */,
+				FC5D875E2B20FA29000A0E89 /* SearchResultsViewController.swift */,
+				FC0B878E2B20770700657FE3 /* Views */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		FC9C2EAA2B28EF0E00247386 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C31652B2764D7002D9A86 /* Favorite.storyboard */,
+				FC0C316B2B2868F1002D9A86 /* FavoritesCollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
