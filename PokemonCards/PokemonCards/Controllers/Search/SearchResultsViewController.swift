@@ -12,9 +12,11 @@ protocol ResultDelegate: AnyObject {
   func didTapCell(item: CardDetailsCellViewModel)
 }
 
-class SearchResultsViewController: UIViewController, UICollectionViewDelegate, UINavigationControllerDelegate {
+class SearchResultsViewController: UIViewController, UICollectionViewDelegate {
 
   @IBOutlet var collectionView: UICollectionView!
+  @IBOutlet var longPressText: UILabel!
+
   private var searchViewModels = [SearchResultCellViewModel]()
   private var detailViewModels = [CardDetailsCellViewModel]()
   weak var delegate: ResultDelegate?
@@ -25,23 +27,9 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
 
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
+    self.longPressText.text = "Click long on cards to add to favorites or click once to see its details!"
     collectionView.reloadData()
   }
-
-  // MARK: - Initiliaze Storyboard
-
-//  private func initiliazeSearchResultsStoryboard() {
-//
-//    let searchResultsStoryboard = UIStoryboard(name: "CardDetails", bundle: nil)
-//    guard let searchResultsVC = searchResultsStoryboard.instantiateInitialViewController() as? CardDetailsViewController else {
-//      fatalError("Unable to Instantiate Onboarding View Controller")
-//    }
-//  }
-
-  //  private func registerCells() {
-  //    collectionView.register(UINib(nibName: SearchResultsCollectionViewCell.identifier, bundle: nil),
-  //                                     forCellWithReuseIdentifier: SearchResultsCollectionViewCell.identifier)
-  //  }
 
   // MARK: - Delegate
 
@@ -50,7 +38,6 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
     detailViewModels = items.compactMap({
       CardDetailsCellViewModel(name: $0.name, artist: $0.artist, imageUrlHiRes: $0.imageUrlHiRes)
     })
-//    collectionView.reloadData()
   }
 
   func update(with results: [Card]) {

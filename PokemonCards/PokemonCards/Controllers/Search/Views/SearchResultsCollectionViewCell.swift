@@ -15,12 +15,13 @@ class SearchResultsCollectionViewCell: UICollectionViewCell {
 
   private var viewModel: SearchResultCellViewModel?
   static let identifier = "cell"
+  private var isFinished = false
 
-// MARK: - Configure Cell
+  // MARK: - Configure Cell
 
   func configure(viewModel: SearchResultCellViewModel) {
-    self.viewModel = viewModel
 
+    self.viewModel = viewModel
     let transformer = SDImageResizingTransformer(size: CGSize(width: 150, height: 180), scaleMode: .fill)
     imageView.sd_setImage(with: URL(string: viewModel.imageUrl), placeholderImage: nil, context: [.imageTransformer: transformer])
     textLabel.text = viewModel.name
@@ -37,21 +38,28 @@ extension SearchResultsCollectionViewCell {
   @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
 
     switch gestureRecognizer.state {
+    case .began:
+      isFinished = false
     case .ended:
+      if !isFinished {
+        var retrievedItems: [SearchResultCellViewModel] = []
 
-      var retrievedItems: [SearchResultCellViewModel] = []
+        let defaultItems = UserDefaults.standard.retrieve(object: [SearchResultCellViewModel].self, fromKey: "Favorites") ?? []
+        retrievedItems.append(contentsOf: defaultItems)
 
-      let defaultItems = UserDefaults.standard.retrieve(object: [SearchResultCellViewModel].self, fromKey: "Favorites") ?? []
-      retrievedItems.append(contentsOf: defaultItems)
-
-      if let item = viewModel {
-        retrievedItems.append(item)
+        if !retrievedItems.contains(viewModel!) {
+          retrievedItems.append(viewModel!)
+          print("viewModel saved!")
+          UserDefaults.standard.save(customObject: retrievedItems, inKey: "Favorites")
+        } else {
+          retrievedItems.removeAll { $0 == viewModel }
+          UserDefaults.standard.save(customObject: retrievedItems, inKey: "Favorites")
+          print("deleted!!")
+        }
       }
-
-      print("viewModel saved!")
-      UserDefaults.standard.save(customObject: retrievedItems, inKey: "Favorites")
-
     default: break
     }
   }
+
 }
+
