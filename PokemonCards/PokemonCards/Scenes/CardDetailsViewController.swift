@@ -43,7 +43,7 @@ class CardDetailsViewController: UIViewController {
 
     NSLayoutConstraint.activate([
       imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+      imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
       imageView.widthAnchor.constraint(equalToConstant: 300),
       imageView.heightAnchor.constraint(equalToConstant: 400)
     ])
