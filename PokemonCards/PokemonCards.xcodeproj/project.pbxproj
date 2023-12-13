@@ -88,7 +88,7 @@
 				FC0B87922B20772400657FE3 /* Managers */,
 				FC0B87912B20771D00657FE3 /* ViewModels */,
 				FC0B87902B20771500657FE3 /* Models */,
-				FC0B878F2B20770E00657FE3 /* Controllers */,
+				FC0B878F2B20770E00657FE3 /* Scenes */,
 				FC0B878D2B2076EE00657FE3 /* Extensions */,
 				FC0B87872B2073E900657FE3 /* Info.plist */,
 			);
@@ -113,15 +113,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		FC0B878F2B20770E00657FE3 /* Controllers */ = {
+		FC0B878F2B20770E00657FE3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				FC9C2EA92B28EED500247386 /* Search */,
 				FC0C31642B2764B5002D9A86 /* Favorites */,
-				FC5D875B2B20BB2C000A0E89 /* Core */,
 				FC5D87712B2306AC000A0E89 /* CardDetailsViewController.swift */,
+				FC5D87572B20BAC8000A0E89 /* TabBarViewController.swift */,
 			);
-			path = Controllers;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		FC0B87902B20771500657FE3 /* Models */ = {
@@ -166,14 +166,6 @@
 				FC5D87592B20BB14000A0E89 /* FavoriteViewController.swift */,
 			);
 			path = Favorites;
-			sourceTree = "<group>";
-		};
-		FC5D875B2B20BB2C000A0E89 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				FC5D87572B20BAC8000A0E89 /* TabBarViewController.swift */,
-			);
-			path = Core;
 			sourceTree = "<group>";
 		};
 		FC9C2EA92B28EED500247386 /* Search */ = {

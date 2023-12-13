@@ -49,12 +49,10 @@ extension SearchResultsCollectionViewCell {
 
         if !retrievedItems.contains(viewModel!) {
           retrievedItems.append(viewModel!)
-          print("viewModel saved!")
           UserDefaults.standard.save(customObject: retrievedItems, inKey: "Favorites")
         } else {
           retrievedItems.removeAll { $0 == viewModel }
           UserDefaults.standard.save(customObject: retrievedItems, inKey: "Favorites")
-          print("deleted!!")
         }
       }
     default: break

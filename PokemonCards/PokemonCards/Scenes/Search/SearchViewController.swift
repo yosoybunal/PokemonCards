@@ -47,7 +47,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchC
         }
       }
     }
-    print(query)
   }
 
   // MARK: - Initiliaze Storyboard
