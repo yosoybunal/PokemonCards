@@ -12,7 +12,7 @@ class TabBarViewController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    let vc1 = SearchViewController()
+    let vc1 = SearchResultsViewController()
     vc1.title = "Search"
     let nav1 = UINavigationController(rootViewController: vc1)
     nav1.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)

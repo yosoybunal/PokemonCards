@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		FC0B877A2B2073E900657FE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B87792B2073E900657FE3 /* AppDelegate.swift */; };
-		FC0B877E2B2073E900657FE3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B877D2B2073E900657FE3 /* SearchViewController.swift */; };
 		FC0B87832B2073E900657FE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC0B87822B2073E900657FE3 /* Assets.xcassets */; };
 		FC0B87862B2073E900657FE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC0B87842B2073E900657FE3 /* LaunchScreen.storyboard */; };
 		FC0C31662B2764D7002D9A86 /* Favorite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC0C31652B2764D7002D9A86 /* Favorite.storyboard */; };
@@ -32,7 +31,6 @@
 /* Begin PBXFileReference section */
 		FC0B87762B2073E900657FE3 /* PokemonCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC0B87792B2073E900657FE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FC0B877D2B2073E900657FE3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FC0B87822B2073E900657FE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC0B87852B2073E900657FE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC0B87872B2073E900657FE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 		FC9C2EA92B28EED500247386 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				FC0B877D2B2073E900657FE3 /* SearchViewController.swift */,
 				FC5D875E2B20FA29000A0E89 /* SearchResultsViewController.swift */,
 				FC0B878E2B20770700657FE3 /* Views */,
 			);
@@ -267,7 +264,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC0B877E2B2073E900657FE3 /* SearchViewController.swift in Sources */,
 				FC5D87722B2306AC000A0E89 /* CardDetailsViewController.swift in Sources */,
 				FC5D87632B2103FC000A0E89 /* SearchResultsCollectionViewCell.swift in Sources */,
 				FC5D87692B21D3F6000A0E89 /* SearchResultCellViewModel.swift in Sources */,
