@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CardDetailsCellViewModel {
+struct CardDetailCellViewModel {
 
   let name: String
   let artist: String

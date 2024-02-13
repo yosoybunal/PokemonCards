@@ -9,7 +9,7 @@ import UIKit
 
 protocol ResultDelegate: AnyObject {
 
-  func didTapCell(item: CardDetailsCellViewModel)
+  func didTapCell(item: CardDetailCellViewModel)
 }
 
 class SearchResultsViewController: UIViewController, UICollectionViewDelegate, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
@@ -18,7 +18,7 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
   @IBOutlet var longPressText: UILabel!
 
   private var searchViewModels = [SearchResultCellViewModel]()
-  private var detailViewModels = [CardDetailsCellViewModel]()
+  private var detailViewModels = [CardDetailCellViewModel]()
   weak var delegate: ResultDelegate?
   var searchController: UISearchController!
 
@@ -48,7 +48,7 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
   func itemTapped(with items: [Card]) {
 
     detailViewModels = items.compactMap({
-      CardDetailsCellViewModel(name: $0.name, artist: $0.artist, imageUrlHiRes: $0.imageUrlHiRes)
+      CardDetailCellViewModel(name: $0.name, artist: $0.artist, imageUrlHiRes: $0.imageUrlHiRes)
     })
   }
 
@@ -112,7 +112,7 @@ extension SearchResultsViewController: UICollectionViewDataSource {
 }
 
 extension SearchResultsViewController: ResultDelegate {
-  func didTapCell(item: CardDetailsCellViewModel) {
+  func didTapCell(item: CardDetailCellViewModel) {
     let vc = CardDetailsViewController(card: item)
     navigationController?.pushViewController(vc, animated: true)
   }

@@ -10,7 +10,7 @@ import SDWebImage
 
 class CardDetailsViewController: UIViewController {
 
-  private let cardDetailsViewModel: CardDetailsCellViewModel
+  private let cardDetailsViewModel: CardDetailCellViewModel
   private var nameLabel: UILabel = UILabel()
   private var artistLabel: UILabel = UILabel()
   private var imageView: UIImageView = UIImageView()
@@ -28,7 +28,7 @@ class CardDetailsViewController: UIViewController {
     self.imageView.sd_setImage(with: URL(string: cardDetailsViewModel.imageUrlHiRes), completed: nil)
   }
 
-  init(card: CardDetailsCellViewModel) {
+  init(card: CardDetailCellViewModel) {
     self.cardDetailsViewModel = card
     super.init(nibName: nil, bundle: nil)
   }
