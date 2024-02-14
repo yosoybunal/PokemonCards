@@ -113,7 +113,10 @@ extension SearchResultsViewController: UICollectionViewDataSource {
 
 extension SearchResultsViewController: ResultDelegate {
   func didTapCell(item: CardDetailCellViewModel) {
-    let vc = CardDetailsViewController(card: item)
+    let cardDetailStoryboard = UIStoryboard(name: "CardDetail", bundle: nil)
+    let vc = cardDetailStoryboard.instantiateViewController(identifier: "CardDetail", creator: { coder in
+      return CardDetailViewController(coder: coder, card: item)
+    })
     navigationController?.pushViewController(vc, animated: true)
   }
 }
