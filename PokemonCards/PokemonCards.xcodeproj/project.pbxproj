@@ -15,6 +15,7 @@
 		FC0C316C2B2868F1002D9A86 /* FavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C316B2B2868F1002D9A86 /* FavoritesCollectionViewCell.swift */; };
 		FC4C3CD02B7CA63200964E99 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4C3CCF2B7CA63200964E99 /* CardDetailViewController.swift */; };
 		FC4C3CD22B7CA63E00964E99 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4C3CD12B7CA63E00964E99 /* CardDetail.storyboard */; };
+		FC4C3CD42B7CBF3900964E99 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4C3CD32B7CBF3900964E99 /* SearchResultViewModel.swift */; };
 		FC5D87582B20BAC8000A0E89 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5D87572B20BAC8000A0E89 /* TabBarViewController.swift */; };
 		FC5D875A2B20BB14000A0E89 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5D87592B20BB14000A0E89 /* FavoriteViewController.swift */; };
 		FC5D875D2B20F89A000A0E89 /* SearchResults.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC5D875C2B20F89A000A0E89 /* SearchResults.storyboard */; };
@@ -39,6 +40,7 @@
 		FC0C316B2B2868F1002D9A86 /* FavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC4C3CCF2B7CA63200964E99 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		FC4C3CD12B7CA63E00964E99 /* CardDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
+		FC4C3CD32B7CBF3900964E99 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		FC5D87572B20BAC8000A0E89 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		FC5D87592B20BB14000A0E89 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		FC5D875C2B20F89A000A0E89 /* SearchResults.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchResults.storyboard; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				FC5D87682B21D3F6000A0E89 /* SearchResultCellViewModel.swift */,
 				FC5D876F2B22FB5C000A0E89 /* CardDetailCellViewModel.swift */,
+				FC4C3CD32B7CBF3900964E99 /* SearchResultViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				FC0C316C2B2868F1002D9A86 /* FavoritesCollectionViewCell.swift in Sources */,
 				FC5D87652B21C750000A0E89 /* APICaller.swift in Sources */,
 				FC5D87672B21CDF8000A0E89 /* SearchResultsModel.swift in Sources */,
+				FC4C3CD42B7CBF3900964E99 /* SearchResultViewModel.swift in Sources */,
 				FC5D87702B22FB5C000A0E89 /* CardDetailCellViewModel.swift in Sources */,
 				FC5D875A2B20BB14000A0E89 /* FavoriteViewController.swift in Sources */,
 				FC0B877A2B2073E900657FE3 /* AppDelegate.swift in Sources */,
@@ -353,7 +357,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -410,7 +414,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

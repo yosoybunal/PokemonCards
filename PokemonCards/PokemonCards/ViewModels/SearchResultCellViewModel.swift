@@ -12,3 +12,4 @@ struct SearchResultCellViewModel: Codable, Equatable {
   let name: String
   let imageUrl: String
 }
+
