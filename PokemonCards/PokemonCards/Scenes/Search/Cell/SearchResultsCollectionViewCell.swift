@@ -14,10 +14,7 @@ class SearchResultsCollectionViewCell: UICollectionViewCell {
   @IBOutlet var textLabel: UILabel!
 
   private var viewModel: SearchResultCellViewModel?
-  static let identifier = "cell"
-  private var isFinished = false
-
-  // MARK: - Configure Cell
+  static let identifier = "SearchResultsCollectionViewCell"
 
   func configure(viewModel: SearchResultCellViewModel) {
     self.viewModel = viewModel
