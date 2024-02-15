@@ -8,3 +8,7 @@ App Structure: MVVM design pattern
 UI: Xibs, Storyboards
 
 Networking: URLSession to fetch cards from a domain upon the search input for health
+
+## Components & Tools
+
+-- test
