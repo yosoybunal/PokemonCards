@@ -14,9 +14,7 @@ class FavoriteViewController: UIViewController {
 
   private let refreshControl = UIRefreshControl()
   private var searchViewModels = [SearchResultCellViewModel]()
-
-  let notificationView = UIView()
-  let notificationLabel = UILabel()
+  private let notificationView = NotificationView()
 
   // MARK: - VC Lifecycle
 
@@ -29,23 +27,7 @@ class FavoriteViewController: UIViewController {
     collectionView.alwaysBounceVertical = true
     collectionView.refreshControl = refreshControl
     collectionView.reloadData()
-
-    // Configure notification view
-    notificationLabel.textAlignment = .center
-    notificationLabel.textColor = .systemBackground
-    notificationLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-    notificationLabel.translatesAutoresizingMaskIntoConstraints = false
-    notificationView.addSubview(notificationLabel)
-    NSLayoutConstraint.activate([
-      notificationLabel.centerXAnchor.constraint(equalTo: notificationView.centerXAnchor),
-      notificationLabel.centerYAnchor.constraint(equalTo: notificationView.centerYAnchor)
-    ])
-
-    notificationView.backgroundColor = .systemGray
-    notificationView.frame = CGRect(x: 5, y: view.frame.height - 125, width: view.frame.width - 10, height: 40)
-    notificationView.layer.cornerRadius = 15
-    notificationView.isHidden = true
-    view.addSubview(notificationView)
+    notificationView.configureNotificationView(view: view)
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -59,8 +41,7 @@ class FavoriteViewController: UIViewController {
   }
 
   // MARK: - Pull to Refresh
-  @objc
-  private func didPullToRefresh(_ sender: Any) {
+  @objc private func didPullToRefresh(_ sender: Any) {
     let items = UserDefaults.standard.retrieve(object: [SearchResultCellViewModel].self, fromKey: "Favorites")
     guard let items = items else { return }
     searchViewModels = items.compactMap({
@@ -70,52 +51,9 @@ class FavoriteViewController: UIViewController {
     refreshControl.endRefreshing()
   }
 
-  // Function to show notification
-  func showNotification(message: String) {
-    notificationLabel.text = message
-    // Show notification with animation
-    notificationView.isHidden = false
-    UIView.animate(withDuration: 0.3, animations: {
-      self.notificationView.frame.origin.y = self.view.frame.height - 125
-    }) { _ in
-      // Dismiss notification after 2 seconds
-      DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-        self.hideNotification()
-      }
-    }
-  }
+  // MARK: - Handle Long Press
 
-  // Function to hide notification
-  func hideNotification() {
-    // Hide notification with animation
-    UIView.animate(withDuration: 0.3) {
-      self.notificationView.frame.origin.y = self.view.frame.height
-    } completion: { _ in
-      self.notificationView.isHidden = true
-    }
-  }
-}
-
-// MARK: - DataSource
-
-extension FavoriteViewController: UICollectionViewDataSource {
-
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-    return searchViewModels.count
-  }
-
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoritesCollectionViewCell.identifier, for: indexPath)
-            as? FavoritesCollectionViewCell else { return UICollectionViewCell()}
-    cell.configure(viewModel: searchViewModels[indexPath.row])
-    let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-    cell.addGestureRecognizer(longPressGesture)
-    return cell
-  }
-
-  @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
+  @objc private func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
     if gestureRecognizer.state == .began {
       let location = gestureRecognizer.location(in: collectionView)
 
@@ -125,13 +63,31 @@ extension FavoriteViewController: UICollectionViewDataSource {
         if !retrievedItems.contains(searchViewModels[indexPath.row]) {
           retrievedItems.append(searchViewModels[indexPath.row])
           UserDefaults.standard.save(customObject: retrievedItems, inKey: "Favorites")
-          showNotification(message: "Item added!")
+          notificationView.showNotification(message: "Item added!", view: view)
         } else {
           retrievedItems.removeAll { $0 == searchViewModels[indexPath.row] }
           UserDefaults.standard.save(customObject: retrievedItems, inKey: "Favorites")
-          showNotification(message: "Item removed!")
+          notificationView.showNotification(message: "Item removed!", view: view)
         }
       }
     }
+  }
+}
+
+// MARK: - CW DataSource
+
+extension FavoriteViewController: UICollectionViewDataSource {
+
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return searchViewModels.count
+  }
+
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoritesCollectionViewCell.identifier, for: indexPath)
+            as? FavoritesCollectionViewCell else { return UICollectionViewCell()}
+    cell.configure(viewModel: searchViewModels[indexPath.row])
+    let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+    cell.addGestureRecognizer(longPressGesture)
+    return cell
   }
 }
