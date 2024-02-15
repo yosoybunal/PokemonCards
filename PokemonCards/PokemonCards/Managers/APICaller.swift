@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum NetworkError: Error {
+  case urlError
+  case canNotParseData
+}
+
 final class APICaller {
 
   static let shared = APICaller()
@@ -14,24 +19,27 @@ final class APICaller {
 
   struct Constants {
 
-    static let healthBaseURL = "https://api.pokemontcg.io/v1/cards?hp=gte"
+    static let baseURL = "https://api.pokemontcg.io/v1/cards?hp=gte"
   }
 
   // MARK: - Search API
 
   public func searchWithHP(with query: String, completionHandler: @escaping (Result<[Card], Error>) -> Void) {
 
-    guard let url = URL(string: Constants.healthBaseURL+"\(query)") else { return }
+    guard let url = URL(string: Constants.baseURL+"\(query)") else { return }
 
     URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
-      guard let data = data, error == nil else { return }
+      guard error == nil else {
+        completionHandler(.failure(NetworkError.urlError))
+        return
+      }
+      guard let data = data else { return }
       do{
         let result = try
-        //        JSONSerialization.jsonObject(with: data)
         JSONDecoder().decode(SearchResultsModel.self, from: data)
         completionHandler(.success(result.cards))
-      } catch(let error) {
-        completionHandler(.failure(error))
+      } catch {
+        completionHandler(.failure(NetworkError.canNotParseData))
       }
     } .resume()
   }
