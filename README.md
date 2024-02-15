@@ -18,7 +18,7 @@ Networking: URLSession to fetch cards from a domain upon the search input for he
 - UserDefaults
 - Long Press Action to Favorite and Unfavorite Cards
 
-### 3rd Party Library wih SPM
+### Third Party Library wih SPM
 - SDWebImage (To async image download and caching)
 
 ### API
