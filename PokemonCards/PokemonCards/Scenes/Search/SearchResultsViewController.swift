@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol ResultDelegate: AnyObject {
-  func didTapCell(card: CardDetailCellViewModel)
-}
-
 class SearchResultsViewController: UIViewController, UISearchResultsUpdating, UISearchControllerDelegate {
 
   @IBOutlet var collectionView: UICollectionView!
@@ -22,21 +18,31 @@ class SearchResultsViewController: UIViewController, UISearchResultsUpdating, UI
     didSet {
       DispatchQueue.main.async { [weak self] in
         self?.collectionView.reloadData()
+        self?.longPressText.text = "Click long on cards to add to favorites or click once to see its details!"
       }
     }
   }
 
   private let notificationView = NotificationView()
   private var cardDetailViewModels = [CardDetailCellViewModel]()
-  private weak var delegate: ResultDelegate?
-  private var searchController: UISearchController!
+  private var searchController: UISearchController
   private var viewModel = SearchResultViewModel()
+
+
+  init?(coder: NSCoder, searchController: UISearchController) {
+    self.searchController = searchController
+    super.init(coder: coder)
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
   // MARK: - VC Lifecycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    initiliazeSearchResultsStoryboard()
+    viewModel.delegate = self
     setupUI()
   }
 
@@ -50,15 +56,6 @@ class SearchResultsViewController: UIViewController, UISearchResultsUpdating, UI
     searchController.searchBar.keyboardType = .numberPad
     addToolBar()
     notificationView.configureNotificationView(view: view)
-  }
-
-  private func initiliazeSearchResultsStoryboard() {
-    let searchResultsStoryboard = UIStoryboard(name: "SearchResults", bundle: nil)
-    guard let searchResultsVC = searchResultsStoryboard.instantiateInitialViewController() as? SearchResultsViewController else {
-      fatalError("Unable to Instantiate Onboarding View Controller")
-    }
-    searchResultsVC.delegate = self
-    self.searchController = UISearchController(searchResultsController: searchResultsVC)
   }
 
   private func addToolBar() {
@@ -94,18 +91,11 @@ class SearchResultsViewController: UIViewController, UISearchResultsUpdating, UI
     }
   }
 
-  func getSearchResults(cards: [SearchResultCellViewModel]) {
-    searchViewModels = cards
-  }
-
-  func getCardDetails(cards: [CardDetailCellViewModel]) {
-    cardDetailViewModels = cards
-  }
-
   func updateSearchResults(for searchController: UISearchController) {
     guard let query = searchController.searchBar.text,
-          !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
-    viewModel.fetchData(for: searchController, with: query)
+      !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+    viewModel.fetchData(with: query)
+    collectionView.setContentOffset(CGPoint.zero, animated: true)
   }
 }
 
@@ -125,21 +115,25 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
     cell.addGestureRecognizer(longPressGesture)
     return cell
   }
-  
+
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     collectionView.deselectItem(at: indexPath, animated: true)
     let card = cardDetailViewModels[indexPath.row]
-    delegate?.didTapCell(card: card)
-  }
-}
-
-extension SearchResultsViewController: ResultDelegate {
-
-  func didTapCell(card: CardDetailCellViewModel) {
     let cardDetailStoryboard = UIStoryboard(name: "CardDetail", bundle: nil)
     let vc = cardDetailStoryboard.instantiateViewController(identifier: "CardDetail", creator: { coder in
       return CardDetailViewController(coder: coder, card: card)
     })
     navigationController?.pushViewController(vc, animated: true)
+  }
+}
+
+extension SearchResultsViewController: SearchResultViewModelDelegate {
+
+  func getSearchResults(cards: [SearchResultCellViewModel]) {
+    searchViewModels = cards
+  }
+
+  func getCardDetails(cards: [CardDetailCellViewModel]) {
+    cardDetailViewModels = cards
   }
 }

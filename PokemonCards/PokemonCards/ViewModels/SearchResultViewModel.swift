@@ -7,33 +7,33 @@
 
 import UIKit
 
+protocol SearchResultViewModelDelegate: AnyObject {
+  func getSearchResults(cards: [SearchResultCellViewModel])
+  func getCardDetails(cards: [CardDetailCellViewModel])
+}
+
 final class SearchResultViewModel {
 
-  func fetchData(for searchController: UISearchController, with query: String) {
+  weak var delegate: SearchResultViewModelDelegate?
 
-    guard let resultsController = searchController.searchResultsController as? SearchResultsViewController,
-          let query = searchController.searchBar.text,
-          !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+  func fetchData(with query: String) {
 
-    APICaller.shared.searchWithHP(with: query) { result in
-      DispatchQueue.main.async {
+    APICaller.shared.searchWithHP(with: query) { [weak self] result in
         switch result {
         case .success(let results):
           let cards = results.compactMap({
             SearchResultCellViewModel(name: $0.name , imageUrl: $0.imageUrl)
           })
-          resultsController.getSearchResults(cards: cards)
-
+          self?.delegate?.getSearchResults(cards: cards)
           let cardDetails = results.compactMap({
             CardDetailCellViewModel(name: $0.name, artist: $0.artist, imageUrlHiRes: $0.imageUrlHiRes)
           })
-          resultsController.getCardDetails(cards: cardDetails)
-          
+          self?.delegate?.getCardDetails(cards: cardDetails)
         case .failure(let error):
           print(error)
           break
         }
-      }
+
     }
   }
 }
