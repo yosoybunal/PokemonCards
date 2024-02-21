@@ -13,11 +13,17 @@ class TabBarViewController: UITabBarController {
     super.viewDidLoad()
 
     // MARK: - Search Navigation
-    let rootViewController = SearchResultsViewController()
-    rootViewController.title = "Search"
-    let searchNavigation = UINavigationController(rootViewController: rootViewController)
+    let searchResultsStoryboard = UIStoryboard(name: "SearchResults", bundle: nil)
+    let searchController = UISearchController()
+    let searchResultsVC = searchResultsStoryboard.instantiateViewController(identifier: "SearchResults", creator: { coder in
+      return SearchResultsViewController(coder: coder, searchController: searchController)
+    })
+
+    let searchNavigation = UINavigationController(rootViewController: searchResultsVC)
     searchNavigation.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+    searchResultsVC.title = "Search"
     searchNavigation.navigationBar.prefersLargeTitles = true
+
 
     // MARK: - Favorite Navigation
     let storyboard = UIStoryboard(name: "Favorite", bundle: nil)
